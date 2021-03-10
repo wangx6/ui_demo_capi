@@ -16,7 +16,16 @@ app.use(bodyParser.json())
 app.post('/quote', (req, res) => {
     const {body}  = req;
     console.log(body.firstName);
-    res.json({ok: true});
+    res.json(
+        {
+            ok: true,
+            data: {
+                quote: { 
+                    type: "life",
+                    amount: 150.00
+                }
+            }
+        });
 });
 
 app.listen(port, () => {
