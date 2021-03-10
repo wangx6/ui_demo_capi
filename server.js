@@ -7,11 +7,27 @@ const app = express();
 const port = 8080;
 
 app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.post('/quote', (req, res) => {
-    res.json({ok: true});
+    const {body}  = req;
+    console.log(body.firstName);
+    res.json(
+        {
+            ok: true,
+            data: {
+                quote: { 
+                    type: "life",
+                    amount: 150.00
+                }
+            }
+        });
 });
 
-app.listen(post, () => {
+app.listen(port, () => {
     console.log(`listening on port ${port}}`);
 });
